@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.jauntnote'
+    namespace 'com.example.jist'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.jauntnote"
+        applicationId "com.example.jist"
         minSdk 21
         targetSdk 32
         versionCode 1

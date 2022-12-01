@@ -1,4 +1,4 @@
-package com.example.jauntnote
+package com.example.jist
 
 import android.content.ContentValues
 import android.content.Context
@@ -7,12 +7,13 @@ import android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
-const val initial_note = "Introduction"
-const val helptext = "Welcome!\n\n" +
-        "Use the search bar to find or create notes.\n" +
-        "Everything is saved automatically.\n" +
-        "Empty notes will be deleted!"
-class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "jaunt", null, 1) {
+class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "jist", null, 1) {
+    val intro: String
+    val priv: String
+    init {
+        intro = context.resources.getString(R.string.introduction)
+        priv = context.resources.getString(R.string.privacy_notice)
+    }
     var db: SQLiteDatabase? = null
         get() {
             if (field !is SQLiteDatabase) { field = this.writableDatabase!! }
@@ -20,13 +21,20 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "jaunt", nul
         }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) { }
 
+
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE notes (id VARCHAR(256) PRIMARY KEY, value VARCHAR(256))")
         db?.execSQL("CREATE TABLE meta (id Integer primary key , value VARCHAR(256) not null)")
 
         // insert initial helper text
-        db?.execSQL("INSERT into meta values (0, ?)", arrayOf(initial_note))
-        db?.execSQL("INSERT into notes values (?, ?)", arrayOf(initial_note, helptext))
+        val introduction = "Introduction"
+        val privacy_note = "Privacy Notice"
+
+        db?.execSQL("INSERT into notes values (?, ?)", arrayOf(introduction, intro))
+        db?.execSQL("INSERT into notes values (?, ?)", arrayOf(privacy_note, priv))
+        // set initial note to the introduction
+        db?.execSQL("INSERT into meta values (0, ?)", arrayOf(introduction))
+
     }
     fun getNames(): ArrayList<String> {
         val list: ArrayList<String> = ArrayList()
@@ -73,4 +81,5 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "jaunt", nul
     fun deleteNote() {
         db?.execSQL("delete from notes where id = (select value from meta where id = 0)")
     }
+
 }

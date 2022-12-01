@@ -1,4 +1,4 @@
-package com.example.jauntnote
+package com.example.jist
 
 import org.junit.Test
 

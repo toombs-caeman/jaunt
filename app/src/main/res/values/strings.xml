@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Jaunt</string>
+    <string name="app_name">Jist</string>
+    <string name="introduction">Welcome!\n\nThis is a note.\n\nUse the search bar to find or create notes.\nEverything is saved automatically.\nEmpty notes will be deleted (even this one).</string>
+    <string name="privacy_notice">Your notes stay on your device.\n\nI (the app developer) do not collect any information from your device for any reason.</string>
 </resources>

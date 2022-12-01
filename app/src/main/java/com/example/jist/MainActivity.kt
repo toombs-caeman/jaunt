@@ -1,10 +1,9 @@
-package com.example.jauntnote
+package com.example.jist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.*
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 
 /**
@@ -16,7 +15,7 @@ import android.widget.*
  * publish to f-droid
  */
 class MainActivity : AppCompatActivity() {
-    private val db = DatabaseHandler(this)
+    lateinit var db: DatabaseHandler
     lateinit var listView: ListView
     lateinit var searchView: SearchView
     lateinit var savingMsg: Toast
@@ -25,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        db = DatabaseHandler(applicationContext)
 
         noteBody = findViewById(R.id.noteBody)
         listView = findViewById(R.id.listView)
