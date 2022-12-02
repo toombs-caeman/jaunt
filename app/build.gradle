@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.jist'
+    namespace 'us.epistem.jist'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.jist"
+        applicationId "us.epistem.jist"
         minSdk 21
         targetSdk 32
         versionCode 1

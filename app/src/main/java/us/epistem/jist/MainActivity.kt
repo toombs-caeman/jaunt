@@ -1,19 +1,12 @@
-package com.example.jist
+package us.epistem.jist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.*
 import android.widget.*
+import us.epistem.jist.R
 
-/**
- * TODO
- * change package (example.com) and project name (note thing (nothing)?)
- * help text
- * refresh list bug - new notes do not populate in list until second time
- * publish to play store
- * publish to f-droid
- */
 class MainActivity : AppCompatActivity() {
     lateinit var db: DatabaseHandler
     lateinit var listView: ListView

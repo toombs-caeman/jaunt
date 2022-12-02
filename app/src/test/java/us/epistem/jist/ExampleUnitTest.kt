@@ -1,4 +1,4 @@
-package com.example.jist
+package us.epistem.jist
 
 import org.junit.Test
 

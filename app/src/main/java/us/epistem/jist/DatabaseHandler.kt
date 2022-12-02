@@ -1,4 +1,4 @@
-package com.example.jist
+package us.epistem.jist
 
 import android.content.ContentValues
 import android.content.Context
@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import us.epistem.jist.R
 
 class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "jist", null, 1) {
     val intro: String

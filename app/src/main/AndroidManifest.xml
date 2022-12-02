@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Jist"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="us.epistem.jist.MainActivity"
             android:windowSoftInputMode="stateVisible"
             android:exported="true">
             <intent-filter>
