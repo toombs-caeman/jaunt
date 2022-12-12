@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View.*
 import android.widget.*
-import us.epistem.jist.R
 
 class MainActivity : AppCompatActivity() {
     lateinit var db: DatabaseHandler
     lateinit var listView: ListView
+    lateinit var listAdapter: ArrayAdapter<String>
     lateinit var searchView: SearchView
     lateinit var savingMsg: Toast
     lateinit var noteBody: EditText
@@ -24,15 +24,11 @@ class MainActivity : AppCompatActivity() {
         searchView = findViewById(R.id.searchView)
 
         savingMsg = Toast.makeText(this, "saved", Toast.LENGTH_SHORT)
-        val listAdapter: ArrayAdapter<String> = ArrayAdapter( this, android.R.layout.simple_list_item_1, db.getNames())
+        listAdapter = ArrayAdapter( this, android.R.layout.simple_list_item_1, db.getNames())
         listView.adapter = listAdapter
 
-        listView.setOnItemClickListener {
-                _, _, position, _ ->
-            val s = listAdapter.getItem(position).toString()
-            openNote(s)
-            searchView.setQuery(db.id, false)
-        }
+        // when you click on a drop-down item, open that note
+        listView.setOnItemClickListener { _, _, position, _ -> openNote(listAdapter.getItem(position).toString()) }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 openNote(query!!)
@@ -50,14 +46,6 @@ class MainActivity : AppCompatActivity() {
                 // delete current note if it's empty, otherwise save it
                 val body = noteBody.text.toString()
                 if (body == "") { db.deleteNote() } else { db.value = body }
-                // refresh list of notes
-                listAdapter.clear()
-                listAdapter.addAll(db.getNames())
-                listAdapter.notifyDataSetChanged()
-                listView.invalidate()
-                listView.invalidateViews()
-                listView.adapter = listAdapter
-                Log.e("new list", db.getNames().toString())
 
                 listView.visibility = VISIBLE
                 noteBody.visibility = GONE
@@ -83,5 +71,12 @@ class MainActivity : AppCompatActivity() {
         noteBody.setSelection(noteBody.text.length) // move cursor to the end
         searchView.clearFocus()
         noteBody.requestFocus()
+
+        // update list
+        Log.e("new list", db.getNames().toString())
+        listAdapter.clear()
+        listAdapter.addAll(db.getNames())
+        listAdapter.notifyDataSetChanged()
+        listView.invalidate()
     }
 }
