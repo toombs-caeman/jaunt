@@ -9,6 +9,14 @@ import android.util.Log
 
 class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "jist", null, 1) {
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) { }
+    private var intro: String
+    private var privacy: String
+
+    init {
+
+        intro = context.resources.getString(R.string.introduction)
+        privacy = context.resources.getString(R.string.privacy_notice)
+    }
 
     /**
      * table 'meta' contains the name of the current note at meta.id == 0, which is used as a key into table 'notes'
@@ -24,8 +32,8 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, "jist", null
         val introduction = "Introduction"
         val privacy_note = "Privacy Notice"
 
-        db?.execSQL("insert into notes values (?, ?)", arrayOf(introduction, R.string.introduction))
-        db?.execSQL("insert into notes values (?, ?)", arrayOf(privacy_note, R.string.privacy_notice))
+        db?.execSQL("insert into notes values (?, ?)", arrayOf(introduction, intro))
+        db?.execSQL("insert into notes values (?, ?)", arrayOf(privacy_note, privacy))
         // set initial note to the introduction
         db?.execSQL("insert into meta values (0, ?)", arrayOf(introduction))
 

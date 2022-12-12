@@ -1,5 +1,6 @@
 *.iml
 *.kra~
+*.png~
 .gradle
 /local.properties
 .idea/
