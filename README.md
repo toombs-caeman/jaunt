@@ -23,9 +23,8 @@ The following "features" will never be added:
 # potential future features
 * full text search, fuzzy search
 * note list sort order options (most recently used, best match or alphabetical). Currently alphabetical
-* option to discard changes instead of saving, more generally note edit history
-* import/export notes
-* themes? Currently the app follows the system light/dark mode, but that's it.
+* history: option to discard changes instead of saving, more generally note edit history
+* import/export notes as .zip or .json
 
 Adding some of these would create the need for an overflow or 'kebab' menu, which is likely to be the only UI change ever.
 

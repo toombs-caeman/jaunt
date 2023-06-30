@@ -40,9 +40,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:height="1000dp"
-            android:gravity="top"
             android:background="@null"
-            android:inputType="text|textMultiLine" />
+            android:gravity="top"
+            android:inputType="text|textMultiLine"
+            android:paddingLeft="10px" />
 
     </LinearLayout>
 
