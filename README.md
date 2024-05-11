@@ -25,6 +25,7 @@ The following "features" will never be added:
 * note list sort order options (most recently used, best match or alphabetical). Currently alphabetical
 * history: option to discard changes instead of saving, more generally note edit history
 * import/export notes as .zip or .json
+* quick copy into 'IN' list (android intent `PROCESS_TEXT`)
 
 Adding some of these would create the need for an overflow or 'kebab' menu, which is likely to be the only UI change ever.
 

@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var searchView: SearchView
     lateinit var savingMsg: Toast
     lateinit var noteBody: EditText
+    lateinit var dummy: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         noteBody = findViewById(R.id.noteBody)
         listView = findViewById(R.id.listView)
         searchView = findViewById(R.id.searchView)
+        dummy = findViewById(R.id.dummy)
 
         savingMsg = Toast.makeText(this, "saved", Toast.LENGTH_SHORT)
         listAdapter = ArrayAdapter( this, android.R.layout.simple_list_item_1, db.getNames())
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
+        dummy.setOnClickListener {openNote(searchView.query.toString())}
 
         searchView.setOnQueryTextFocusChangeListener { _, gainedFocus ->
             // toggle whether to display the note list (if searching) or a note
@@ -48,9 +51,11 @@ class MainActivity : AppCompatActivity() {
                 if (body == "") { db.deleteNote() } else { db.value = body }
 
                 listView.visibility = VISIBLE
+                dummy.visibility = VISIBLE
                 noteBody.visibility = GONE
             } else {
                 noteBody.visibility = VISIBLE
+                dummy.visibility = GONE
                 listView.visibility = GONE
             }
         }
